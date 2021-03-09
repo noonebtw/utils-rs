@@ -1,9 +1,8 @@
-use std::io;
 use std::fmt;
+use std::io;
 
 #[cfg(feature = "windows")]
 use winapi::um::errhandlingapi::GetLastError;
-
 
 #[derive(Debug)]
 pub enum Error {

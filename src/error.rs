@@ -4,6 +4,12 @@ use std::io;
 #[cfg(feature = "windows")]
 use winapi::um::errhandlingapi::GetLastError;
 
+pub mod prelude {
+    pub use crate::error::{Error, Result};
+}
+
+pub type Result<T> = std::result::Result<T, Error>;
+
 #[derive(Debug)]
 pub enum Error {
     #[cfg(feature = "windows")]

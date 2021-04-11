@@ -8,7 +8,7 @@ edition = "2018"
 
 [features]
 windows = ["winapi"]
-default = ["windows"]
+default = []
 
 [dependencies]
 log = "0.4.14"

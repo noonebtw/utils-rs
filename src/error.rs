@@ -20,6 +20,15 @@ pub enum Error {
     IoError(io::Error),
 }
 
+impl std::error::Error for Error {
+    fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
+        match *self {
+            Self::IoError(ref err) => err.source(),
+            _ => None,
+        }
+    }
+}
+
 impl Error {
     #[cfg(feature = "windows")]
     pub fn win32_error() -> Self {
@@ -35,6 +44,6 @@ impl From<io::Error> for Error {
 
 impl fmt::Display for Error {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "Display not implemented for this Error, use Debug")
+        write!(f, "{:?}", self)
     }
 }
